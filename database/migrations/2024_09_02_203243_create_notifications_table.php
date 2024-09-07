@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('approval_attachments', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('approval_request_id')->constrained('approval_requests')->onDelete('cascade'); // Foreign key
-            $table->string('attachment'); // File path or URL
-            $table->string('original_filename');
+        Schema::create('notifications', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->string('type');
+            $table->morphs('notifiable');
+            $table->text('data');
+            $table->timestamp('read_at')->nullable();
             $table->timestamps();
         });
     }
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('approval_attachments');
+        Schema::dropIfExists('notifications');
     }
 };

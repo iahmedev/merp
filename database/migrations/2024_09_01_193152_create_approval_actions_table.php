@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('approval_actions', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique(); // 'approved', 'rejected', 'forwarded', 'correction_requested'
+            $table->string('name')->unique(); // 'approved', 'rejected', 'forwarded', 'correction'
             $table->timestamps();
         });
     }

@@ -10,6 +10,12 @@ class ApprovalAttachment extends Model
     use HasFactory;
     protected $fillable = [
         'approval_request_id',
-        'attachment'
+        'attachment',
+        'original_filename'
     ];
+
+    public function approvalRequest()
+    {
+        return $this->belongsTo(ApprovalRequest::class);
+    }
 }

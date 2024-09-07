@@ -9,4 +9,6 @@ class ApprovalAction extends Model
 {
     use HasFactory;
     protected $fillable = ['name'];
+
+    // 'approved', 'rejected', 'forwarded', 'correction'
 }

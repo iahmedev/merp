@@ -9,4 +9,6 @@ class ApprovalRequestStatus extends Model
 {
     use HasFactory;
     protected $fillable = ['name'];
+    
+    // 'pending', 'approved', 'rejected', 'correction'
 }

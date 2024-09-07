@@ -22,6 +22,7 @@ class Approval extends Model
 
     public function action()
     {
+        // 'approved', 'rejected', 'forwarded', 'correction'
         return $this->belongsTo(ApprovalAction::class, 'approval_action_id');
     }
 
@@ -30,8 +31,13 @@ class Approval extends Model
         return $this->morphMany(Comment::class, 'commentable');
     }
 
-    public function user()
+    public function approver()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'approver_id');
+    }
+
+    public function nextApprover()
+    {
+        return $this->belongsTo(User::class, 'forwarded_to_id');
     }
 }

@@ -17,7 +17,14 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         User::factory(5)->create();
-        $this->call([DesignationSeeder::class, DepartmentSeeder::class, EmploymentStatusSeeder::class, EmploymentTypeSeeder::class]);
+        $this->call([
+            DesignationSeeder::class,
+            DepartmentSeeder::class,
+            EmploymentStatusSeeder::class,
+            EmploymentTypeSeeder::class,
+            ApprovalRequestStatusSeeder::class,
+            ApprovalActionSeeder::class
+        ]);
         User::all()->each(function ($user) {
             EmploymentInfo::factory()->create(['user_id' => $user->id]);
             UserDetail::factory()->create(['user_id' => $user->id]);

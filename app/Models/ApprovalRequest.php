@@ -19,6 +19,7 @@ class ApprovalRequest extends Model
 
     public function status()
     {
+        // 'pending', 'approved', 'rejected', 'correction'
         return $this->belongsTo(ApprovalRequestStatus::class, 'approval_request_status_id');
     }
 
@@ -32,8 +33,13 @@ class ApprovalRequest extends Model
         return $this->morphMany(Comment::class, 'commentable');
     }
 
-    public function user()
+    public function currentApprover()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'current_approver_id');
+    }
+
+    public function createdBy()
+    {
+        return $this->belongsTo(User::class, 'created_by_id');
     }
 }
